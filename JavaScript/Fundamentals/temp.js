@@ -1,9 +1,10 @@
-let array = [6, NaN , 1, 8, 10];
+//usando reduce()
+function countSheeps(sheep) {
+    return sheep.reduce((acc,cur)=>{
+        if(cur) {
+        return ++acc;        
+        }else return acc;
+    },0);
+}
 
-const invalid = [NaN, null, '', undefined, typeof(array) != 'number'];
-    
-array.forEach(element => {
-    if (typeof(element) != 'number' ) console.log( 0);
-    if (invalid.includes(element)) console.log( 0);
-}); 
-
+console.log(countSheeps([undefined,null,false,true,true,false,null,undefined]))
