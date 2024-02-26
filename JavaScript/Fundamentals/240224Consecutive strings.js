@@ -16,16 +16,47 @@
 // longest_consec(strarr, 2) should return "folingtrashy".
 //https://www.codewars.com/kata/56a5d994ac971f1ac500003e/train/javascript
 
+
+//usando for's
 function longestConsec(strarr, k) {
-    
+    let concatString = [];
+    let length = strarr.length;
+    if(length === 0 || k<=0 || k>length) return "";
+    for(let i=0, n=k-1; n < length; i++, n++){
+        let tempStr='';
+        for(let j=i; j <= n; j++){
+            tempStr+=strarr[j];
+        }
+        concatString.push(tempStr);
+    }
+    const lengthArr = concatString.map(elem=> elem.length);
+    const maxLengthIndex = lengthArr.indexOf(Math.max(...lengthArr));
+    return concatString[maxLengthIndex];
 }
 
 
+let strarr =  ["tree", "foling", "trashy", "blue", "abcdef", "uvwxyz"];
 
 
 
+//usando metodos: slice, map
+function longestConsec2(strarr, k) {
+    let concatString = [];
+    let length = strarr.length;
+    if(length === 0 || k<=0 || k>length) return "";
+    for(let i=0, n=k; n <= length; i++, n++){
+        concatString.push(strarr.slice(i,n).join(''));
+    }
+    let longest = '';
+    concatString.forEach(elem=> {if( elem.length > longest.length) longest = elem});
+    return longest;
+}
 
+let arr1 = longestConsec(strarr,2);
+let arr2 = longestConsec2(strarr,2);
+console.log(arr1);
+console.log(arr2);
 
-let strarr = ["wlwsasphmxx","owiaxujylentrklctozmymu","wpgozvxxiu"];
+//console.log(arr1.map((elem,i)=> elem==arr2[i]? true : false));
 
-console.log(longestConsec(strarr,2))
+//https://www.codewars.com/kata/56a5d994ac971f1ac500003e/solutions/javascript
