@@ -34,3 +34,34 @@ function invert(arr, n, i = 0){
 console.log('invert(arr, n, i = 0)', invert([1,2,3,4],4));
 
 //Escreva uma função recursiva que determine quantas vezes um dígito K ocorre em um número natural N. Por exemplo, o dígito 2 ocorre 3 vezes em 762021192
+function nTimes(k,n){
+    let arr = String(n).split('');
+    let count = 0;
+    const ntimes = (k, arr, i = 0, count)=>{
+        if (!arr.includes(`${k}`)) return count;
+        if ( i < arr.length){
+            if(arr[i] === `${k}`) count++;
+            return ntimes(k, arr, i+1, count)
+        }
+        return count;
+    }
+    return ntimes(k,arr,0,count);
+}
+console.log('ntimes(k,arr,0,count)', nTimes(2,762021192));
+
+function contaDig(k, n, count = 0){
+    //console.log(n);
+    if (n == 0 && n == k) return 1;
+    if (n == 0) return count;
+    if ( n%10 === k ) count++;
+    return contaDig(k,parseInt(n/10),count);
+}
+
+console.log (contaDig(2, 762021192))
+
+//Um problema típico em ciência da computação consiste em converter um número da sua forma decimal para a forma binária.
+function dec2bin(n){
+    if(n == 0) return '';
+    return dec2bin(parseInt(n/2))+`${n%2}`
+}
+console.log(dec2bin(3))
