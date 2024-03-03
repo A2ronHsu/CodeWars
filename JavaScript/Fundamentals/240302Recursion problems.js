@@ -57,11 +57,52 @@ function contaDig(k, n, count = 0){
     return contaDig(k,parseInt(n/10),count);
 }
 
-console.log (contaDig(2, 762021192))
+console.log ("contaDig(k, n, count = 0)", contaDig(2, 762021192))
 
 //Um problema típico em ciência da computação consiste em converter um número da sua forma decimal para a forma binária.
 function dec2bin(n){
     if(n == 0) return '';
     return dec2bin(parseInt(n/2))+`${n%2}`
 }
-console.log(dec2bin(3))
+console.log("dec2bin(n)", dec2bin(3))
+
+//teste se n é primo com recursão;
+function prime(n,i=n-1){
+//    console.log('prime',i);
+    if(n%i !== 0) return prime(n, i-1);
+    if(n%i === 0 && i === 1) return true;
+    return false; 
+}
+console.log("prime(n,i=n-1)",prime(2));
+
+
+//enésimo numero primo com recursão
+function nPrime(n, i=0, count=0){
+    if (n === 0) return 0;
+    if (n === count) return i-1;
+    if (prime(i)) {
+
+        return nPrime(n, i+1, count+1);
+    }else{
+        return nPrime(n, i+1, count);
+    } 
+}
+ console.log("nPrime", nPrime(5));
+
+
+//O máximo divisor comum (MDC) de dois números inteiros x e y pode ser calculado usando-se uma definição recursiva: ● MDC(x, y) = MDC(x − y, y), se x > y ● MDC(x,y) = MDC(y,x) ● MDC(x,x) = x
+function mdc(x,y, n=1, arr = []){
+    let primenumber = nPrime(n);
+    if( x === y) return x;
+    
+    if( x%primenumber === 0  && y%primenumber === 0){
+        arr.push(primenumber);
+        return mdc(x/primenumber, y/primenumber, n, arr);
+    }
+    if( x%primenumber !== 0 && y%primenumber !== 0){
+        return mdc(x,y,n+1,arr)
+    }
+    if(arr.length === 0) return 1;
+    return arr.reduce((acc, cur)=> acc*cur);
+}
+console.log(mdc(1,2));
