@@ -105,4 +105,19 @@ function mdc(x,y, n=1, arr = []){
     if(arr.length === 0) return 1;
     return arr.reduce((acc, cur)=> acc*cur);
 }
-console.log(mdc(1,2));
+console.log("mdc(x,y, n=1, arr = [])",mdc(6,14));
+
+function mdc2(x,y){
+    if(x === y) return x;
+    if(x > y ) return mdc2(x-y,x);
+    if(x < y ) return mdc2(x, y - x);
+}
+console.log("mdc2(x,y)", mdc2(19,38));
+
+//Pode-se calcular o resto da divisão, MOD, de x por y, dois números inteiros positivos, usando-se a seguinte definição: ● MOD(x,y) = MOD(x - y, y) se x > y ● MOD(x,y) = x se x < y ● MOD(x,y) = 0 se x = y 
+function mod(x,y){
+    if (x === y) return 0;
+    if (x < y) return x;
+    if (x > y) return mod(x-y,y);
+}
+console.log("mod(x,y)", mod(15,6));
