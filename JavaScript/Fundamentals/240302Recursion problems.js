@@ -122,16 +122,82 @@ function mod(x,y){
 }
 console.log("mod(x,y)", mod(15,6));
 
-//Escreva as funções recursivas que unem dois (arrays), sem elementos repetidos, classificadas considerando que as duas listas não têm elementos em comum
+//enésimo minimo de um array com recursão
+function min(arr,n = 1, minArr = arr[n-1] ){
+    if (n < arr.length){
+        if (arr[n] < minArr) {
+            minArr = arr[n];
+            return min(arr, n+1, minArr)
+        }
+        return min(arr, n+1, minArr)
+    }
+    return minArr;
+}
+console.log("min",min([7,5,9,2,1,0],2));
+
+function setArray(arr,i=1,result = [arr[0]]){
+    if (i < arr.length){
+        if(result.includes(arr[i])){
+            return setArray(arr,i+1,result)
+        }else{
+            result.push(arr[i]);
+            return setArray(arr, i+1,result);
+        }
+    }
+    return result;
+
+}
+console.log("setArray", setArray([1,1,2,2,3,4,5,5]))
+
+function swap(arr, srcIndex, targetIndex){
+    return [arr[srcIndex] , arr[targetIndex]] = [arr[targetIndex], arr[srcIndex]];   
+}
+
+
+function sort(arr, i = 0){
+    let minElem = min(arr,i+1);
+    let minElemIndex = arr.indexOf(minElem);
+    if (i<arr.length){
+        if(arr[i] > minElem) {
+            swap(arr,minElemIndex,i);
+            return sort(arr, i+1);
+        }
+        return sort(arr, i+1)
+    }
+    return arr;
+}
+console.log("sort(arr, i = 0)", sort([7,5,9,2,1,0]))
+
+//Escreva as funções recursivas que unem dois (arrays), sem elementos repetidos e classificadas em ordem crescente
 function union(arr1,arr2, i = 0){
     if( i < arr2.length){
         arr1.push(arr2[i]);
         return union(arr1,arr2,i+1);
     }
+    
 
-    return [... new Set(arr1.sort((a,b)=>a-b))];
+    return setArray(sort(arr1));
 }
 
-console.log("union(arr1,arr2, i = 0)", union([1,2,4],[4,5,6,7]));
+console.log("union", union([-1,1,2,4,5],[4,5,6,7]));
 
 //Escreva um algoritmo recursivo capaz de gerar todos os elementos do conjunto potência dado um conjunto formado por letras.
+function dec2binArr(n, length, i = 0,arr = new Array(length).fill(0)){
+    if (n === 0 && arr.length === 0) return [0];
+    if (n === 0) return arr.reverse();
+    arr[i] = n % 2;
+    return dec2binArr(parseInt(n/2), length, i+1, arr)
+}
+console.log("dec2binArr", dec2binArr(7,4));
+
+function powerSet(arr, n = 2**(arr.length)-1, result = []){
+    if ( n < 0) return result;
+    let binArr = dec2binArr(n, arr.length);
+    let tempArr = [];
+    arr.forEach((elem, i) => {
+        if (binArr[i] === 1) tempArr.push(elem)
+    });
+    result.push(tempArr);
+    return powerSet(arr,n-1,result);
+}
+console.log("powerSet", powerSet(['a', 'b']))
