@@ -121,3 +121,17 @@ function mod(x,y){
     if (x > y) return mod(x-y,y);
 }
 console.log("mod(x,y)", mod(15,6));
+
+//Escreva as funções recursivas que unem dois (arrays), sem elementos repetidos, classificadas considerando que as duas listas não têm elementos em comum
+function union(arr1,arr2, i = 0){
+    if( i < arr2.length){
+        arr1.push(arr2[i]);
+        return union(arr1,arr2,i+1);
+    }
+
+    return [... new Set(arr1.sort((a,b)=>a-b))];
+}
+
+console.log("union(arr1,arr2, i = 0)", union([1,2,4],[4,5,6,7]));
+
+//Escreva um algoritmo recursivo capaz de gerar todos os elementos do conjunto potência dado um conjunto formado por letras.
