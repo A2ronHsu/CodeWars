@@ -1,15 +1,15 @@
 //https://www.codewars.com/kata/525f3eda17c7cd9f9e000b39/train/javascript
 
-function zero(fn) { return 0}
-function one(fn) { return 1}
-function two(fn) { return 2}
-function three(fn) { return 3}
-function four(fn) { return 4}
-function five(fn) { return 5}
-function six(fn) { return 6}
-function seven(fn) { return 7}
-function eight(fn) {return 8}
-function nine(fn) { return 9}
+const zero = (fn) => { fn(0)}
+const one = (fn) => { fn(1)}
+const two = (fn) => { fn(2)}
+const three = (fn) => { fn(3)}
+const four = (fn) => { fn(4)}
+const five = (fn) => { fn(5)}
+const six = (fn) => { fn(6)}
+const seven = (fn) => { fn(7)}
+const eigh = (fn) =>  {fn(8)}
+const nine = (fn) => { fn(9)}
 
 function plus() {}
 function minus() {}
