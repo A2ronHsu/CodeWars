@@ -1,17 +1,20 @@
-//https://www.codewars.com/kata/525f3eda17c7cd9f9e000b39/train/javascript
+const  zero = (callback) => typeof(callback) === 'function'? callback(0) : 0;
+const  one = (callback) => typeof(callback) === 'function'? callback(1) : 1;
+const  two = (callback) => typeof(callback) === 'function'? callback(2) : 2;
+const  three = (callback) => typeof(callback) === 'function'? callback(3) : 3;
+const  four = (callback) => typeof(callback) === 'function'? callback(4) : 4;
+const  five = (callback) => typeof(callback) === 'function'? callback(5) : 5;
+const  six = (callback) => typeof(callback) === 'function'? callback(6) : 6;
+const  seven = (callback) => typeof(callback) === 'function'? callback(7) : 7;
+const  eight = (callback) => typeof(callback) === 'function'? callback(8) : 8;
+const  nine = (callback) => typeof(callback) === 'function'? callback(9) : 9;
 
-const zero = (fn) => { fn(0)}
-const one = (fn) => { fn(1)}
-const two = (fn) => { fn(2)}
-const three = (fn) => { fn(3)}
-const four = (fn) => { fn(4)}
-const five = (fn) => { fn(5)}
-const six = (fn) => { fn(6)}
-const seven = (fn) => { fn(7)}
-const eigh = (fn) =>  {fn(8)}
-const nine = (fn) => { fn(9)}
+const  plus = (val1) => (val2) => parseInt(val1+val2);
+const  minus = (val1) => (val2) => parseInt(val1-val2);
+const  times = (val1) => (val2) => parseInt(val1*val2);
+const  dividedBy = (val1) => (val2) => parseInt(val1/val2);
 
-function plus() {}
-function minus() {}
-function times() {}
-function dividedBy() {}
+console.log(nine(plus(nine())));
+console.log(nine(minus(nine())));
+console.log(nine(times(nine())));
+console.log(nine(dividedBy(nine())));
