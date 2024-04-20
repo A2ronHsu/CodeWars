@@ -1,19 +1,11 @@
-//https://www.codewars.com/kata/577bd026df78c19bca0002c0/train/javascript
+//https://www.codewars.com/kata/550498447451fbbd7600041c/train/javascript
 
-function correct(string)
-{
-	let correction = {
-        '0':'O',
-        '1':'I',
-        '5':'S'
-    };
-    for(i=0; i<string.length; i++){
-        let char = string[i];
-        console.log(char, correction.hasOwnProperty(char), string )
-        if(correction.hasOwnProperty(char)) string = string.replace(char,correction[char]);
-    }
-    return string;
-
+function comp(array1, array2){
+    let arr1 = array1.map(cur => cur*cur);
+    return array1;
 }
 
-console.log(correct("L0ND0N"));
+let a = [121, 144, 19, 161, 19, 144, 19, 11]  
+let b = [121, 14641, 20736, 361, 25921, 361, 20736, 361]
+
+console.log('test');
