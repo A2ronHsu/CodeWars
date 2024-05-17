@@ -1,30 +1,53 @@
 //https://www.codewars.com/kata/5816b76988ca9613cc00024f/train/javascript
-function sortSequence1(sequence) {
-    let sequenceObject= {}
-    let key = 0;
+function sortSequence(sequence) {
+    let sequenceArray= []
     let array = [];
     for (let i = 0; i<sequence.length; i++){
         if(sequence[i]){
             array.push(sequence[i]);
-        }
-        else{
+        }else{
             array.sort((a,b)=>a-b)
             array.push(0);
-            sequenceObject[key] = { 
-                arr: array,
-                sum: array.reduce((acc,cur) => acc+cur)
-            }
-            key++;
-            array = []
-
+            sequenceArray.push(
+                { 
+                    arr: array,
+                    sum: array.reduce((acc,cur) => acc+cur)
+                }
+            )
+            array=[];
         }
     }
-    array = Object.values(sequenceObject).sort((a,b) => a.sum-b.sum);
-    let result = [];
-    for ( let i in array){
-        result = result.concat(array[i].arr);
+    sequenceArray.sort((a,b)=> a.arr.reduce((acc,cur)=> acc + cur) - b.arr.reduce((acc,cur)=> acc + cur));
+    let result = []
+    for(let elem of sequenceArray){
+        result = result.concat(elem.arr);
     }
+    
+
     return result;
+}
+
+function sortSequence1(sequence) {
+    let matris = [];
+    let array = [];
+    let result = [];
+    for (let i = 0; i < sequence.length; i++){
+        if(sequence[i]){
+            array.push(sequence[i]);
+        }else{
+            array.sort((a,b)=>a-b);
+            array.push(0);
+            matris.push(array)
+            array = [];
+        }
+    }
+    matris.sort((a,b)=>{
+        return a.reduce((acc,cur)=> acc+cur) - b.reduce((acc,cur)=>acc+cur)
+    })
+    for (let elem of matris){
+        result = result.concat(elem); 
+    }
+    return result; 
 }
 
 
