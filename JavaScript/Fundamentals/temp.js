@@ -1,10 +1,23 @@
-//usando reduce()
-function countSheeps(sheep) {
-    return sheep.reduce((acc,cur)=>{
-        if(cur) {
-        return ++acc;        
-        }else return acc;
-    },0);
+//usando regular expressions
+function printerError(s) {
+  return `${[...s.matchAll(/[^a-m]/g)].length}/${s.length}`;
 }
 
-console.log(countSheeps([undefined,null,false,true,true,false,null,undefined]))
+
+//usando fors
+function printerError2(s = '') {
+  const {length} = s;
+  let errorsCount = 0;
+  const good = 'abcdefghijlm';
+  for ( let i=0; i<length;i++){
+    if (!good.includes(s[i])){
+      errorsCount++;
+    }
+  }
+
+  return `${errorsCount}/${length}`
+}
+
+// console.log(printerError2('aaaxbbbbyyhwawiwjjjwwm'))
+
+console.log(/[a-m]/);
