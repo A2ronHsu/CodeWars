@@ -1,22 +1,17 @@
-
-
-
-
 function abbreviate(string) {
     let result = '';
-    let stringArray = [...string.matchAll(/\b[a-zA-Z]*\b/g)];
-    for (let subStr of stringArray){
-        if(subStr[0] !=='' && subStr[0].length>3){
-            result+=subStr[0][0]+`${subStr[0].length-2}`+subStr[0][subStr[0].length-1];
-        }else if(subStr[0].length3 <= 3 && subStr[0] != ''){
-            result+=subStr[0];
+    let stringArray = [...string.matchAll(/\b\w+\b|\W+/g)];
+    let regex = new RegExp(/\W/);
+    for (let i = 0; i < stringArray.length; i++){
+        let cur = stringArray[i][0]
+        if(regex.test(cur)){
+            result+=cur;
         }
-        else if(subStr.index != string.length){
-            result+=string[subStr.index]
-        }
+        
     }
+    
     return result;
 
 }
 
-console.log(abbreviate('elephant-rides are really fun!'))
+console.log(abbreviate('internationalization... Accessibility'))
