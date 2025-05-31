@@ -1,52 +1,47 @@
+// https://www.codewars.com/kata/555624b601231dc7a400017a/train/typescript
+
 class Node {
    data: any;
    next: Node | null;
-   previous: Node | null;
-   constructor(data: any, previous: Node | null = null, next: Node | null = null) {
+   constructor(data: any, previous: Node | null = null) {
       this.data = data;
-      this.previous = previous;
-      this.next = next;
+      this.next = data;
    }
-}
-
-class DoubleLinkList {
-   size:number;
-   head:Node|null;
-   tail:Node|null;
-
-   constructor(){
-      this.size = 0;
-      this.head = null;
-      this.tail = null;
-   }
-
-   add(data:any){
-      if (!this.head) {
-         this.head = new Node(data)
-         this.tail = this.head;
-         this.head.next = this.tail;
-         this.head.previous = this.tail;
-         return this.head;
-      }
-
-      return this.tail!.previous!.next = new Node(data,this.tail?.previous, this.tail);
-
-   }
-
 }
 
 
 
 export function josephusSurvivor(n: number, k: number) {
-   const list = new DoubleLinkList();
-   for (let i = 1; i <= n; i++){
-      list.add(i);
-      console.log(list);
+   let initialNode = new Node(1);
+   let current = initialNode;
+
+   for (let i = 2; i < n; i++) {
+      current.next = new Node(i);
+      current = current.next;
    }
-   
-   return list
+   current.next = new Node(n);
+   current = current.next;
+   current.next = initialNode;
+
+   // console.log(current.data)
+
+   while (current.data !== current.next!.data) {
+      for (let i = 0; i < k; i++) {
+         console.log(current.data, current.next?.data);
+         if (i == k - 1) {
+            console.log("deleted",current.next?.data);
+            current.next = current.next!.next;
+         }else{
+
+            current = current.next!;
+         }
+      }
+   }
+
+   return current.data;
+
+
 }
-console.log('test')
-console.log(josephusSurvivor(5, 2));
-console.log('test')
-console.log(josephusSurvivor(7, 3)); 
+console.log('test');
+console.log(josephusSurvivor(11,19))
+// console.log(josephusSurvivor(5, 2));
