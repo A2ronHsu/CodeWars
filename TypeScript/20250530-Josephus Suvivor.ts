@@ -27,9 +27,9 @@ export function josephusSurvivor(n: number, k: number) {
 
    while (current.data !== current.next!.data) {
       for (let i = 0; i < k; i++) {
-         console.log(current.data, current.next?.data);
+         // console.log(current.data, current.next?.data);
          if (i == k - 1) {
-            console.log("deleted",current.next?.data);
+            // console.log("deleted",current.next?.data);
             current.next = current.next!.next;
          }else{
 
